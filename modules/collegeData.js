@@ -116,5 +116,19 @@ function getStudentsByCourse (course) {
   });
 };
 
+addStudents = function(studentData){
+  return new Promise(function (resolve, reject) {
+  studentData.TA = studentData.TA === undefined ? false : true;
 
-module.exports = {initialize,getAllStudents, getTAs,getCourses,getStudentByNum, getStudentsByCourse};
+  var studentNum = dataCollection.students.length + 1;
+  studentData.studentNum = studentNum;
+
+  dataCollection.students.push(studentData);
+
+  resolve(dataCollection);
+  });
+
+}
+
+
+module.exports = {initialize,getAllStudents, getTAs,getCourses,getStudentByNum, getStudentsByCourse,addStudents}
