@@ -19,6 +19,7 @@ var express = require("express");
 var bodyParser = require('body-parser')
 const collegedata = require('./modules/collegeData.js');
 
+
 var app = express();
 var HTTP_PORT = process.env.PORT || 8080;
 
@@ -57,7 +58,9 @@ app.get("/studentsadd", (req,res) => {
 });
 
 app.post("/studentsadd", (req,res) => {
+  collegedata.addStudents(req.body).then(studentData => {
   res.redirect("/students")
+  });
 });
 
 app.get("/tas",(req,res)=>{
